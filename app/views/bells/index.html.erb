@@ -2,27 +2,13 @@
 
 <h1>Bells</h1>
 
-<table>
-  <thead>
-    <tr>
-      <th>Name</th>
-      <th>Trigger</th>
-      <th>Admin hash</th>
-      <th>Logo</th>
-      <th colspan="3"></th>
-    </tr>
-  </thead>
-
+<table class="bells">
   <tbody>
     <% @bells.each do |bell| %>
       <tr>
+        <td class="logo"><%= image_tag(bell.logo) %></td>
         <td><%= bell.name %></td>
-        <td><%= bell.trigger %></td>
-        <td><%= bell.admin_hash %></td>
-        <td><%= bell.logo %></td>
-        <td><%= link_to 'Show', bell %></td>
-        <td><%= link_to 'Edit', edit_bell_path(bell) %></td>
-        <td><%= link_to 'Destroy', bell, method: :delete, data: { confirm: 'Are you sure?' } %></td>
+        <td class="ring_button"><%= link_to 'Klingeln', bell %></td>
       </tr>
     <% end %>
   </tbody>
