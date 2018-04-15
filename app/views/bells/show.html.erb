@@ -1,0 +1,24 @@
+<p id="notice"><%= notice %></p>
+
+<p>
+  <strong>Name:</strong>
+  <%= @bell.name %>
+</p>
+
+<p>
+  <strong>Trigger:</strong>
+  <%= @bell.trigger %>
+</p>
+
+<p>
+  <strong>Admin hash:</strong>
+  <%= @bell.admin_hash %>
+</p>
+
+<p>
+  <strong>Logo:</strong>
+  <%= @bell.logo %>
+</p>
+
+<%= link_to 'Edit', edit_bell_path(@bell) %> |
+<%= link_to 'Back', bells_path %>
