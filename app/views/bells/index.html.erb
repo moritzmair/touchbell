@@ -1,19 +1,11 @@
 <p id="notice"><%= notice %></p>
 
-<h1>Bells</h1>
-
-<table class="bells">
-  <tbody>
-    <% @bells.each do |bell| %>
-      <tr>
-        <td class="logo"><%= image_tag(bell.logo) %></td>
-        <td><%= bell.name %></td>
-        <td class="ring_button"><%= link_to 'Klingeln', bell %></td>
-      </tr>
-    <% end %>
-  </tbody>
-</table>
-
-<br>
-
-<%= link_to 'New Bell', new_bell_path %>
+<h1>Hub 31 - Technologie- und Gründerzentrum Darmstadt</h1>
+<div onclick="$('html').toggleClass('box_open');$('.expand').toggleClass('expand')" class="shadow"></div>
+<% @bells.each do |bell| %>
+  <div class="bell">
+    <div class="logo" onclick="$(this).parent().toggleClass('expand');$('html').toggleClass('box_open')"><%= image_tag(bell.logo) %></div>
+    <div class="name"><%= bell.name %></div>
+    <div class="ring_button"><%= link_to 'Klingeln', bell %></div>
+  </div>
+<% end %>
