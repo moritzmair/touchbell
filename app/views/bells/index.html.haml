@@ -4,12 +4,12 @@
   .bells
     - @bells.each do |bell|
       .bell{"data-toggle" => "modal", "data-target" => "#bell"+bell.id.to_s}
-        .logo{onclick: "$(this).parent().toggleClass('expand');$('html').toggleClass('box_open')"}= image_tag(bell.logo)
+        .logo= image_tag(bell.logo)
         .name= bell.name
 
 / Modal
 - @bells.each do |bell|
-  .modal{"aria-hidden" => "true", "aria-labelledby" => "exampleModalLabel", role: "dialog", tabindex: "-1", id: "bell"+bell.id.to_s}
+  .modal.fade{"aria-hidden" => "true", "aria-labelledby" => "exampleModalLabel", role: "dialog", tabindex: "-1", id: "bell"+bell.id.to_s}
     .modal-dialog{:role => "document"}
       .modal-content
         .modal-header
@@ -20,4 +20,4 @@
           Falls jemand im Büro ist werden Sie hier an der Eingangstür abgeholt.
         .modal-footer
           %button.btn.btn-secondary{"data-dismiss" => "modal", :type => "button"} Abbrechen
-          %button.btn.btn-danger{:type => "button"} Klingeln
+          %button.btn.btn-danger{:type => "button", onclick: "ringring("+bell.id.to_s+")"} Klingeln

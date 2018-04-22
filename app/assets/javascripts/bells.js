@@ -16,3 +16,9 @@ $(document).ready(function(){
   }
   
 });
+
+function ringring(id){
+  $.get( "/ringring/"+id, function( data ) {
+    $('#bell'+id).modal('hide');
+  });
+}

@@ -1,5 +1,5 @@
 class BellsController < ApplicationController
-  before_action :set_bell, only: [:show, :edit, :update, :destroy]
+  before_action :set_bell, only: [:show, :edit, :update, :destroy, :ringring]
 
   # GET /bells
   def index
@@ -43,6 +43,14 @@ class BellsController < ApplicationController
   def destroy
     @bell.destroy
     redirect_to bells_url, notice: 'Bell was successfully destroyed.'
+  end
+
+  def ringring
+    require 'net/http'
+    uri = URI(@bell.trigger)
+    Net::HTTP.get(uri)
+
+    redirect_to bells_url, notice: 'Klingel wurde ausgelöst'
   end
 
   private
