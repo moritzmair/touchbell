@@ -1,0 +1,16 @@
+%p#notice= notice
+%p
+  %strong Name:
+  = @bell.name
+%p
+  %strong Trigger:
+  = @bell.trigger
+%p
+  %strong Admin hash:
+  = @bell.admin_hash
+%p
+  %strong Logo:
+  = @bell.logo
+= link_to 'Edit', edit_bell_path(@bell)
+|
+= link_to 'Back', bells_path

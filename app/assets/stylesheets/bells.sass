@@ -1,22 +1,28 @@
 // Place all the styles related to the Bells controller here.
 // They will automatically be included in application.css.
 // You can use Sass (SCSS) here: http://sass-lang.com/
+body
+  user-select: none
 
-.shadow
-  opacity: 0
-  transition: all 0.5s ease-in-out
+h1
+  font-size: 20px
+  position: fixed
+  display: block
+  width: 100%
+  border-bottom: 1px solid black
+  background-color: white
+  z-index: 10
+  top: 0
+  padding: 10px
 
-html.box_open
-  .shadow
-    display: inline-block
-    position: absolute
-    top: 0
-    left: 0
-    width: 100vw
-    height: 100vh
-    z-index: 1
-    background-color: black
-    opacity: 0.7
+.bells
+  padding: 60px 10px 10px 10px
+
+.blur
+  transition: all 0.3s ease-in-out
+
+.blur_active
+  filter: blur(10px)
 
 .bell
   margin: 5px 3px
@@ -25,48 +31,14 @@ html.box_open
   position: relative
   overflow: visible
   background-color: #eee
-  .name, .ring_button
-    position: absolute
-    top: 0
-    left: 0
-    width: 250px
-  .name, .ring_button
-    z-index: 0
+  padding: 5px
+  border-radius: 5px
+  cursor: pointer
   .logo
     border: 2px solid gray
-    z-index: 1
   .logo img
     height: 80px
     margin: 10px
-  .name
-    display: none
-    font-size: 20px
-    padding: 20px
-  .ring_button
-    display: none
-    a
-      display: block
-      padding: 30px
-      background-color: #BD0926
-      color: white
-      text-decoration: none
-.expand
-  z-index: 2
-  .name
-    display: block
-    top: 98px
-    z-index: 2
-    border: 2px solid gray
-    border-top: none
-    border-bottom: none
-    width: 100%
-    height: 80px
-    background-color: #eee
-  .ring_button
-    display: block
-    top: 178px
-    z-index: 3
-    border: 2px solid gray
-    border-top: none
-    width: 100%
-    background-color: #eee
+
+.modal-dialog
+  margin: 30vh auto
