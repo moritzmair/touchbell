@@ -1,0 +1,71 @@
+defaults: &defaults
+  public_key: "c7f4503803a7604bfc89" # replace it with your public key
+  private_key: "8faa200aa5469f07f522" # replace it with your private key
+
+  # instances of widget initialized for you on page load
+  live: true
+  
+  # cache files json dumps to prevent calling to server if it posible
+  cache_files: true
+
+  # cache groups json dumps to prevent calling to server if it posible
+  cache_groups: true
+
+  # store file or group after model is created or updated
+  store_after_save: true
+
+  # deletes file or group after model object is deleted
+  delete_after_destroy: true
+
+  # Avaliable options are listed at https://uploadcare.com/documentation/widget/#advanced-configuration
+  # please note, that for options marker as Global: N/A - there is no practical meaning
+  # of putting this option here, as it will not have any effect. 
+  # But it also will not break anything.
+
+  # for preview step use:
+  # preview_step: false # true or false
+
+  # for clearable option (allows user to remove uploaded file from widget) use:
+  # clearable: false # true or false
+
+  # for setting tabs use tabs option:
+  # tabs: "url file facebook" # etc
+  # read more here: https://uploadcare.com/documentation/widget/#tabs
+  # 
+  #   Full list of tabs: 
+  # |----------------------------------------|
+  # | Code       | File Source     | Default |
+  # |------------|-----------------|---------|
+  # | url        | Any URL         | On      |
+  # | file       | Local disk      | On      |
+  # | facebook   | Facebook        | On      |
+  # | dropbox    | Dropbox         | Off     |
+  # | gdrive     | Google Drive    | On      |
+  # | box        | Box             | On      |
+  # | skydrive   | SkyDrive        | On      |
+  # | instagram  | Instagram       | On      |
+  # | evernote   | Evernote        | On      |
+  # | vk         | VK              | Off     |
+  # |________________________________________|
+
+  # for locale option use:
+  # locale: "en"
+
+  # for autostore option use:
+  # autostore: true #true or false
+
+  # for manual start (which means you will need to initialize uploaders yourself) use:
+  # manual_start: false # true or false
+
+  # for path value use:
+  # path_value: true # true or false
+  # (important for input values - see https://uploadcare.com/documentation/widget/#input-value)
+
+development:
+  <<: *defaults
+
+test:
+  <<: *defaults
+
+production:
+  <<: *defaults

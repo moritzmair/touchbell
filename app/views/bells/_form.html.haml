@@ -15,6 +15,6 @@
     = form.text_field :trigger, id: :bell_trigger
   .field
     = form.label :logo
-    = form.text_field :logo, id: :bell_logo
+    = uploadcare_uploader_field :bell, :logo
   .actions
     = form.submit

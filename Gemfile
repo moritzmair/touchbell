@@ -15,6 +15,7 @@ gem 'turbolinks', '~> 5'
 gem 'rails_admin', '~> 1.3'
 gem 'bootstrap', '~> 4.0.0'
 gem 'jquery-rails'
+gem 'uploadcare-rails', "~> 1.1"
 
 group :development, :test do
   gem 'pry'
