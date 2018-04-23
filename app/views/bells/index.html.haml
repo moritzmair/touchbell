@@ -1,6 +1,6 @@
 .blur
   %p#notice= notice
-  %h1 Hub 31 - Technologie- und Gründerzentrum Darmstadt
+  %h1.bellheading Hub 31 - Technologie- und Gründerzentrum Darmstadt
   .bells
     - @bells.each do |bell|
       .bell{"data-toggle" => "modal", "data-target" => "#bell"+bell.id.to_s}
