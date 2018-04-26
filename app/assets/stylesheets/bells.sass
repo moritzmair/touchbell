@@ -1,7 +1,7 @@
 // Place all the styles related to the Bells controller here.
 // They will automatically be included in application.css.
 // You can use Sass (SCSS) here: http://sass-lang.com/
-body
+body .blur
   user-select: none
 
 .bellheading
@@ -24,11 +24,13 @@ body
 
 .blur
   transition: all 0.3s ease-in-out
+  filter: blur(0)
 
 .blur_active
   filter: blur(10px)
 
 .bell
+  
   margin: 5px 3px
   display: inline-block
   vertical-align: top

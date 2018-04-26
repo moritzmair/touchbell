@@ -1,25 +1,24 @@
 class BellsController < ApplicationController
   before_action :set_bell, only: [:show, :edit, :update, :destroy, :ringring]
 
-  # GET /bells
+  def home
+    @bells = Bell.all
+  end
+
   def index
     @bells = Bell.all
   end
 
-  # GET /bells/1
   def show
   end
 
-  # GET /bells/new
   def new
     @bell = Bell.new
   end
 
-  # GET /bells/1/edit
   def edit
   end
 
-  # POST /bells
   def create
     @bell = Bell.new(bell_params)
 
@@ -30,7 +29,6 @@ class BellsController < ApplicationController
     end
   end
 
-  # PATCH/PUT /bells/1
   def update
     if @bell.update(bell_params)
       redirect_to @bell, notice: 'Bell was successfully updated.'
@@ -39,7 +37,6 @@ class BellsController < ApplicationController
     end
   end
 
-  # DELETE /bells/1
   def destroy
     @bell.destroy
     redirect_to bells_url, notice: 'Bell was successfully destroyed.'
