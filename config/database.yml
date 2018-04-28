@@ -9,6 +9,7 @@ development:
   port: 3306
 
 production:
+  url: <%= ENV['DATABASE_URL'] %>
   adapter: postgresql
   encoding: unicode
   pool: <%= ENV.fetch("RAILS_MAX_THREADS") { 5 } %>
