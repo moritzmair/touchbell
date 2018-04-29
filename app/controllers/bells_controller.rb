@@ -1,5 +1,7 @@
+# frozen_string_literal: true
+
 class BellsController < ApplicationController
-  before_action :set_bell, only: [:show, :edit, :update, :destroy, :ringring]
+  before_action :set_bell, only: %i[show edit update destroy ringring]
   before_action :authenticate_user!
 
   def home
@@ -10,15 +12,13 @@ class BellsController < ApplicationController
     @bells = Bell.all
   end
 
-  def show
-  end
+  def show; end
 
   def new
     @bell = Bell.new
   end
 
-  def edit
-  end
+  def edit; end
 
   def create
     @bell = Bell.new(bell_params)
@@ -52,13 +52,14 @@ class BellsController < ApplicationController
   end
 
   private
-    # Use callbacks to share common setup or constraints between actions.
-    def set_bell
-      @bell = Bell.find(params[:id])
-    end
 
-    # Only allow a trusted parameter "white list" through.
-    def bell_params
-      params.require(:bell).permit(:name, :trigger, :admin_hash, :logo)
-    end
+  # Use callbacks to share common setup or constraints between actions.
+  def set_bell
+    @bell = Bell.find(params[:id])
+  end
+
+  # Only allow a trusted parameter "white list" through.
+  def bell_params
+    params.require(:bell).permit(:name, :trigger, :admin_hash, :logo)
+  end
 end
