@@ -8,13 +8,19 @@
         - bell.errors.full_messages.each do |message|
           %li= message
   .field
-    = form.label :name
+    = form.label 'Organisation Name'
     = form.text_field :name, id: :bell_name
   .field
-    = form.label :trigger
+    = form.label 'Trigger URL'
     = form.text_field :trigger, id: :bell_trigger
   .field
     = form.label :logo
     = uploadcare_uploader_field :bell, :logo
   .actions
-    = form.submit
+    = form.submit class: 'btn btn-primary'
+  %br
+%p
+  The trigger is a url that gets opened whenever someone rings the bell. This can be services like:
+  %ul
+    %li https://ifttt.com/maker_webhooks
+    %li https://telegramiotbot.com

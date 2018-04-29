@@ -21,3 +21,5 @@
             = link_to 'Show', bell, class: 'btn btn-light'
             = link_to 'Edit', edit_bell_path(bell), class: 'btn btn-primary'
             = link_to 'Delete', bell, method: :delete, data: { confirm: 'Are you sure?' }, class: 'btn btn-danger'
+          -if bell.enabled
+            .badge.badge-success Enabled
