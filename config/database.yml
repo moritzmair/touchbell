@@ -3,17 +3,10 @@ development:
   adapter: mysql2
   encoding: utf8
   database: touchbell_dev
-  username: root
+  username: touchbell
   password: yourpw
   host: 127.0.0.1
   port: 3306
 
 production:
-  host: <%= ENV['DATABASE_URL'] %>
   adapter: postgresql
-  encoding: unicode
-  pool: <%= ENV.fetch("RAILS_MAX_THREADS") { 5 } %>
-  database: touchbell
-  username: touchbell
-  password: <%= ENV['TOUCHBELL_DATABASE_PASSWORD'] %>
-  
