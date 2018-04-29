@@ -1,5 +1,6 @@
 class BellsController < ApplicationController
   before_action :set_bell, only: [:show, :edit, :update, :destroy, :ringring]
+  before_action :authenticate_user!
 
   def home
     @bells = Bell.all

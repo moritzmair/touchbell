@@ -10,6 +10,7 @@ ruby "2.4.1"
 gem 'pg'
 gem 'rails', '~> 5.1.1'
 gem 'mysql2'
+gem 'devise'
 gem 'puma', '~> 3.7'
 gem 'sass-rails', '~> 5.0'
 gem 'uglifier', '>= 1.3.0'
@@ -26,6 +27,7 @@ group :development, :test do
 end
 
 group :development do
+  gem 'rubocop', require: false
   gem 'capistrano-rails'
   gem 'listen', '>= 3.0.5', '< 3.2'
   gem 'spring'
