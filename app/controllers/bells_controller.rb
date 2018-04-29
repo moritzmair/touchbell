@@ -4,10 +4,6 @@ class BellsController < ApplicationController
   before_action :set_bell, only: %i[show edit update destroy ringring]
   before_action :authenticate_user!
 
-  def home
-    @bells = Bell.all
-  end
-
   def index
     @bells = Bell.all
   end

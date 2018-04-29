@@ -7,7 +7,7 @@
         .logo= image_tag(bell.logo+'-/resize/x160/')
         .name= bell.name
 
-/ Modal
+/ Bootstrap Modal
 - @bells.each do |bell|
   .modal.fade{"aria-hidden" => "true", "aria-labelledby" => "exampleModalLabel", role: "dialog", tabindex: "-1", id: "bell"+bell.id.to_s}
     .modal-dialog{:role => "document"}
