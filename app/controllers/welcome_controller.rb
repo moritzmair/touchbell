@@ -1,6 +1,6 @@
 class WelcomeController < ApplicationController
   def home
-    @bells = Bell.all
+    @bells = Bell.where.not(logo: '').all
     render layout: 'home'
   end
 end
