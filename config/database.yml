@@ -4,7 +4,7 @@ development:
   encoding: utf8
   database: touchbell_dev
   username: root
-  password: reinda8426
+  password: yourpw
   host: 127.0.0.1
   port: 3306
 
