@@ -11,4 +11,6 @@
   %body
     .container
       = render '/layouts/header'
-      = yield
+      .container.content
+        = yield
+      = render '/layouts/footer'

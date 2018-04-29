@@ -1,7 +1,7 @@
 %p#notice= notice
 %h1 Bells
 
-= link_to 'Neue Klingel anlegen', new_bell_path, class: 'btn btn-success'
+= link_to 'Add new bell', new_bell_path, class: 'btn btn-success'
 %br
 %br
 %table
@@ -16,7 +16,9 @@
       %tr
         %td= bell.name
         %td= bell.trigger
-        %td= image_tag(bell.logo+'-/resize/x60/')
-        %td= link_to 'Anzeigen', bell, class: 'btn btn-light'
-        %td= link_to 'Bearbeiten', edit_bell_path(bell), class: 'btn btn-primary'
-        %td= link_to 'Löschen', bell, method: :delete, data: { confirm: 'Bist du sicher?' }, class: 'btn btn-danger'
+        %td
+          -if bell.logo?
+            = image_tag(bell.logo+'-/resize/x60/')
+        %td= link_to 'Show', bell, class: 'btn btn-light'
+        %td= link_to 'Edit', edit_bell_path(bell), class: 'btn btn-primary'
+        %td= link_to 'Delete', bell, method: :delete, data: { confirm: 'Are you sure?' }, class: 'btn btn-danger'

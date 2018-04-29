@@ -8,7 +8,11 @@ class BellsController < ApplicationController
     @bells = Bell.all
   end
 
-  def show; end
+  def show
+    unless current_user == @bell.user || current_user.admin?
+      redirect_to(bells_url, alert: 'You can not view details for this bell') && return
+    end
+  end
 
   def new
     @bell = Bell.new
@@ -17,7 +21,12 @@ class BellsController < ApplicationController
   def edit; end
 
   def create
+    unless current_user.bells.count.zero? && !current_user.admin?
+      redirect_to(bells_url, alert: 'You can only create one bell') && return
+    end
+
     @bell = Bell.new(bell_params)
+    @bell.user = current_user
 
     if @bell.save
       redirect_to @bell, notice: 'Bell was successfully created.'
@@ -27,6 +36,9 @@ class BellsController < ApplicationController
   end
 
   def update
+    unless current_user == @bell.user || current_user.admin?
+      redirect_to(bells_url, alert: 'You can not edit this bell') && return
+    end
     if @bell.update(bell_params)
       redirect_to @bell, notice: 'Bell was successfully updated.'
     else
@@ -35,6 +47,9 @@ class BellsController < ApplicationController
   end
 
   def destroy
+    unless current_user == @bell.user || current_user.admin?
+      redirect_to(bells_url, alert: 'You can not delete this bell') && return
+    end
     @bell.destroy
     redirect_to bells_url, notice: 'Bell was successfully destroyed.'
   end

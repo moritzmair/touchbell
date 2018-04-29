@@ -10,7 +10,7 @@
   %nav.my-2.my-md-0.mr-md-3
     -if user_signed_in?
       %a.p-2.text-dark{:href => "/bells"} Bells
-      %a.p-2.text-dark{:href => "/bells/new"} Neue Klingel anlegen
+      %a.p-2.text-dark{:href => "/bells/new"} Add new bell
     -if current_user.try(:admin?)
       %a.p-2.text-dark{:href => "/admin"} Admin
   -if user_signed_in?
