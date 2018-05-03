@@ -4,7 +4,8 @@
   .bells
     - @bells.each do |bell|
       .bell{"data-toggle" => "modal", "data-target" => "#bell"+bell.id.to_s}
-        .logo= image_tag(bell.logo+'-/resize/x160/')
+        .logo{style: 'background-color: '+bell.background.to_s}
+          = image_tag(bell.logo+'-/resize/x160/')
         .name= bell.name
 
 / Bootstrap Modal

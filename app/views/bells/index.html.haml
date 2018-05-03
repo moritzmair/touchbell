@@ -13,7 +13,7 @@
     - @bells.each do |bell|
       %tr
         %td= bell.name
-        %td
+        %td{style: 'background-color: '+bell.background.to_s}
           -if bell.logo?
             = image_tag(bell.logo+'-/resize/x60/')
         %td

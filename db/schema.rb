@@ -10,7 +10,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 20180429110454) do
+ActiveRecord::Schema.define(version: 20180503184004) do
 
   create_table "bells", force: :cascade, options: "ENGINE=InnoDB DEFAULT CHARSET=utf8" do |t|
     t.string "name"
@@ -21,6 +21,7 @@ ActiveRecord::Schema.define(version: 20180429110454) do
     t.datetime "updated_at", null: false
     t.bigint "user_id"
     t.boolean "enabled", default: false
+    t.string "background"
     t.index ["user_id"], name: "index_bells_on_user_id"
   end
 

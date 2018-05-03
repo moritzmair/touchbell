@@ -21,7 +21,7 @@ class BellsController < ApplicationController
   def edit; end
 
   def create
-    unless current_user.bells.count.zero? && !current_user.admin?
+    unless current_user.bells.count.zero? || current_user.admin?
       redirect_to(bells_url, alert: 'You can only create one bell') && return
     end
 
@@ -71,6 +71,6 @@ class BellsController < ApplicationController
 
   # Only allow a trusted parameter "white list" through.
   def bell_params
-    params.require(:bell).permit(:name, :trigger, :admin_hash, :logo)
+    params.require(:bell).permit(:name, :trigger, :admin_hash, :logo, :background)
   end
 end
