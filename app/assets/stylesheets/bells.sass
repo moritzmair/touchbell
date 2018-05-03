@@ -30,8 +30,9 @@ body .blur
   filter: blur(10px)
 
 .bell
-  
+  max-width: 300px
   margin: 5px 3px
+  height: 130px
   display: inline-block
   vertical-align: top
   transition: all 1s ease
@@ -45,8 +46,12 @@ body .blur
   .logo
     border-radius: 5px
     img
-      height: 80px
+      max-height: 80px
+      max-width: 100%
       margin: 10px
+  .name
+    position: absolute
+    bottom: 0
 
 .modal-dialog
   margin: 30vh auto
