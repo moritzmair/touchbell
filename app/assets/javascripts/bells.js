@@ -15,6 +15,11 @@ $(document).ready(function(){
     e.preventDefault();
   }
 
+  //reload every 25 min
+  setTimeout(function(){
+    window.location.reload(1);
+  }, 5000*60*25);
+
 });
 
 function ringring(id){
