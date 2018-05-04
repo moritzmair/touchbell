@@ -57,9 +57,10 @@ class BellsController < ApplicationController
   def ringring
     require 'net/http'
     uri = URI(@bell.trigger)
-    Net::HTTP.get(uri)
+    response = Net::HTTP.get(uri)
 
-    redirect_to bells_url, notice: 'Klingel wurde ausgelöst'
+    # redirect_to bells_url, notice: 'Klingel wurde ausgelöst: ' + response
+    render json: response.to_json
   end
 
   private

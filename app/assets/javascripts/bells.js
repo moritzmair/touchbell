@@ -14,11 +14,35 @@ $(document).ready(function(){
   document.ontouchmove = function (e) {
     e.preventDefault();
   }
-  
+
 });
 
 function ringring(id){
+  var success = false
+  $('#bell'+id).modal('hide');
+  $('#request_send').modal('show');
+  $('.alert').html('request send')
   $.get( "/ringring/"+id, function( data ) {
-    $('#bell'+id).modal('hide');
+    success = true
+    $('#ring_info').html('Klingel wurde erfolgreich ausgelöst.')
   });
+  setTimeout(function(){
+    if(success){
+      hide_requst_modal();
+    }else{
+      $('#ring_info').html('Klingel konnte nicht ausgelöst werden.')
+      setTimeout(function(){
+        hide_requst_modal();
+      }, 5000);
+    }
+    
+  }, 5000);
+}
+
+function hide_requst_modal(){
+  $('#request_send').modal('hide'); reset();
+}
+
+function reset(){
+  $('#ring_info').html('...')
 }

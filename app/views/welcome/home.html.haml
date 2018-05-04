@@ -1,5 +1,4 @@
 .blur
-  %p#notice= notice
   %h1.bellheading Hub 31 - Technologie- und Gründerzentrum Darmstadt
   .bells
     - @bells.each do |bell|
@@ -22,3 +21,13 @@
         .modal-footer
           %button.btn.btn-secondary{"data-dismiss" => "modal", :type => "button"} Abbrechen
           %button.btn.btn-danger{:type => "button", onclick: "ringring("+bell.id.to_s+")"} Klingeln
+
+.modal.fade{"aria-hidden" => "true", "aria-labelledby" => "exampleModalLabel", role: "dialog", tabindex: "-1", id: "request_send"}
+  .modal-dialog{:role => "document"}
+    .modal-content
+      .modal-header
+        %h5#exampleModalLabel.modal-title Es wird geklingelt
+        %button.close{"aria-label" => "Close", "data-dismiss" => "modal", :type => "button"}
+          %span{"aria-hidden" => "true"} ×
+      .modal-body#ring_info
+        \...
