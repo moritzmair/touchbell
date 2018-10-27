@@ -12,6 +12,11 @@ class BellsController < ApplicationController
     unless current_user == @bell.user || current_user.admin?
       redirect_to(bells_url, alert: 'You can not view details for this bell') && return
     end
+    unless params[:enabled].nil?
+      @bell.enabled = params[:enabled]
+      @bell.save
+      redirect_to(bells_url, notice: 'bell was enabled or disabled')
+    end
   end
 
   def new
@@ -72,6 +77,6 @@ class BellsController < ApplicationController
 
   # Only allow a trusted parameter "white list" through.
   def bell_params
-    params.require(:bell).permit(:name, :trigger, :admin_hash, :logo, :background)
+    params.require(:bell).permit(:name, :trigger, :admin_hash, :logo, :background, :enabled)
   end
 end

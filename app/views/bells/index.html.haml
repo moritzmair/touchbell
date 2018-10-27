@@ -9,6 +9,7 @@
       %th Name
       %th Logo
       %th
+      %th
   %tbody
     - @bells.each do |bell|
       %tr
@@ -17,9 +18,16 @@
           -if bell.logo?
             = image_tag(bell.logo+'-/resize/x60/')
         %td
+          -if bell.enabled
+            .badge.badge-success Enabled
+          -else
+            .badge.badge-danger Disabled
+        %td
           -if current_user == bell.user || current_user.admin?
             = link_to 'Show', bell, class: 'btn btn-light'
             = link_to 'Edit', edit_bell_path(bell), class: 'btn btn-primary'
             = link_to 'Delete', bell, method: :delete, data: { confirm: 'Are you sure?' }, class: 'btn btn-danger'
-          -if bell.enabled
-            .badge.badge-success Enabled
+          -if current_user.admin? && !bell.enabled
+            = link_to 'Enable', bell_path(:id => bell.id, :enabled => true), class: 'btn btn-success'
+          -if current_user.admin? && bell.enabled
+            = link_to 'Disable', bell_path(:id => bell.id, :enabled => false), class: 'btn btn-danger'
