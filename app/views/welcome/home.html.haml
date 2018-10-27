@@ -2,8 +2,8 @@
   %h1.bellheading Hub 31 - Technologie- und Gründerzentrum Darmstadt
   .bells
     - @bells.each do |bell|
-      .bell{"data-toggle" => "modal", "data-target" => "#bell"+bell.id.to_s}
-        .logo{style: 'background-color: '+bell.background.to_s}
+      .bell{"data-toggle" => "modal", "data-target" => "#bell"+bell.id.to_s, style: 'background-color: '+bell.background.to_s}
+        .logo
           = image_tag(bell.logo+'-/resize/x160/')
         .name= bell.name
 
