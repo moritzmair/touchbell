@@ -1,5 +1,7 @@
 .blur
-  %h1.bellheading Hub 31 - Technologie- und Gründerzentrum Darmstadt
+  %h1.bellheading
+    %b Türklingel
+    \- Hub 31 - Technologie- und Gründerzentrum Darmstadt
   .bells
     - @bells.each do |bell|
       .bell{"data-toggle" => "modal", "data-target" => "#bell"+bell.id.to_s, style: 'background-color: '+bell.background.to_s}
