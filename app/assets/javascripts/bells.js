@@ -15,10 +15,10 @@ $(document).ready(function(){
     e.preventDefault();
   }
 
-  //reload every 25 min
+  //reload every 20 min
   setTimeout(function(){
     window.location.reload(1);
-  }, 5000*60*25);
+  }, 1000*60*20);
 
 });
 
