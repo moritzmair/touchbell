@@ -3,8 +3,8 @@ development:
   adapter: mysql2
   encoding: utf8
   database: touchbell_dev
-  username: touchbell
-  password: yourpw
+  username: root
+  password: reinda8426
   host: 127.0.0.1
   port: 3306
 
