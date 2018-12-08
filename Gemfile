@@ -9,7 +9,7 @@ end
 
 ruby '2.4.0'
 
-gem 'bootstrap', '~> 4.0.0'
+gem "bootstrap", ">= 4.1.2"
 gem 'devise'
 gem 'jquery-rails'
 gem 'mysql2'
