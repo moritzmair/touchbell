@@ -3,6 +3,7 @@ A webapp that can be used as a notification system. Build to be used on a tablet
 
 # Setup local enviroment
 * install rails and mysql
+* copy `/config/database.example.yml` to `/config/database.yml` and change credentials if necessary
 * bundle install
 * rails db:setup
 * rails server

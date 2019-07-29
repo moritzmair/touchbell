@@ -1,7 +1,15 @@
 // Place all the behaviors and hooks related to the matching controller here.
 // All this logic will automatically be available in application.js.
 
-$(document).ready(function(){
+const RELOAD_TIME = 1000 * 60 * 20; // 20 min
+
+const $bells = new Map();
+let $ringInfo = null;
+let $requestSend = null;
+
+$(document).ready(function() {
+  $ringInfo = $('#ring_info');
+  $requestSend = $('#request_send');
 
   $(".modal").on('show.bs.modal', function () {
     $('.blur').addClass('blur_active');
@@ -15,39 +23,49 @@ $(document).ready(function(){
     e.preventDefault();
   }
 
-  //reload every 20 min
-  setTimeout(function(){
+  //reload every {RELOAD_TIME}
+  setTimeout(function() {
     window.location.reload(1);
-  }, 1000*60*20);
-
+  }, RELOAD_TIME);
 });
 
-function ringring(id){
-  var success = false
-  $('#bell'+id).modal('hide');
-  $('#request_send').modal('show');
-  $('.alert').html('request send')
-  $.get( "/ringring/"+id, function( data ) {
-    success = true
-    $('#ring_info').html('Klingel wurde erfolgreich ausgelöst.')
-  });
-  setTimeout(function(){
-    if(success){
-      hide_requst_modal();
-    }else{
-      $('#ring_info').html('Klingel konnte nicht ausgelöst werden.')
-      setTimeout(function(){
+function ringring(id) {
+  // get get bell from cache
+  // if exist
+  const $bell = $bells.has(id)
+    ? $bells.get(id)
+    : $(`#bell${id}`);
+
+  // update bell in cache
+  $bells.set(id, $bell)
+
+  $.ajax({
+    method: 'GET',
+    url: `/ringring/${id}`,
+    beforeSend: () => {
+      $bell.modal('hide');
+      $requestSend.modal('show');
+      $('.alert').html('request send');
+    },
+    success: () => {
+      $ringInfo.html('Klingel wurde erfolgreich ausgelöst.');
+    },
+    error: () => {
+      $ringInfo.html('Klingel konnte nicht ausgelöst werden.');
+    },
+    complete: () => {
+      setTimeout(function() {
         hide_requst_modal();
       }, 5000);
-    }
-    
-  }, 5000);
+    },
+  });
 }
 
-function hide_requst_modal(){
-  $('#request_send').modal('hide'); reset();
+function hide_requst_modal() {
+  $requestSend.modal('hide');
+  reset();
 }
 
-function reset(){
-  $('#ring_info').html('...')
+function reset() {
+  $ringInfo.html('...')
 }
