@@ -295,6 +295,7 @@ DEPENDENCIES
   capistrano-rails
   capybara (~> 2.13)
   devise
+  font-awesome-rails
   jquery-rails
   listen (>= 3.0.5, < 3.2)
   mysql2
@@ -317,4 +318,4 @@ RUBY VERSION
    ruby 2.6.1p33
 
 BUNDLED WITH
-   1.17.2
+   1.17.3

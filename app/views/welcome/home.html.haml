@@ -1,12 +1,14 @@
 .blur
   %h1.bellheading
-    %b Türklingel
-    \- Hub 31 - Technologie- und Gründerzentrum Darmstadt
+    %b Willkommen
+    \- HUB31 - Technologie- und Gründerzentrum Darmstadt
   .bells
     - @bells.each do |bell|
       .bell{"data-toggle" => "modal", "data-target" => "#bell"+bell.id.to_s, style: 'background-color: '+bell.background.to_s}
         .logo
-          = image_tag(bell.logo+'-/resize/x160/')
+          = image_tag(bell.logo)
+        %span.bell-icon
+          %i.fa.fa-bell-o
 
 / Bootstrap Modal
 - @bells.each do |bell|

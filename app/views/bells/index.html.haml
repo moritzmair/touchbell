@@ -16,7 +16,7 @@
         %td= bell.name
         %td{style: 'background-color: '+bell.background.to_s}
           -if bell.logo?
-            = image_tag(bell.logo+'-/resize/x60/')
+            = image_tag(bell.logo, {style: 'max-height:60px; padding: 10px;'})
         %td
           -if bell.enabled
             .badge.badge-success Enabled
