@@ -2,7 +2,7 @@
 
 class BellsController < ApplicationController
   before_action :set_bell, only: %i[show edit update destroy ringring]
-  before_action :authenticate_user!
+  before_action :authenticate_user!, except: :ringring
 
   def index
     @bells = Bell.all
