@@ -1,39 +1,35 @@
 // Place all the styles related to the Bells controller here.
 // They will automatically be included in application.css.
 // You can use Sass (SCSS) here: http://sass-lang.com/
+
+$bellHeight: 100px
+$bellSpacingTopBottom: 20px
+$bellSpacingLeftRight: 50px
+
 body .blur
   user-select: none
 
 .bellheading
   font-size: 20px
-  position: fixed
-  display: block
-  width: 100%
-  border-bottom: 1px solid black
-  background-color: white
-  z-index: 10
-  left: 0
-  top: 0
   padding: 10px
+  border-bottom: 5px solid #BD0926
+  margin-bottom: 10px
 
 .bells
-  padding: 45px 0 0 0
-  position: absolute
-  top: 0
-  left: 0
-  right: 0
+  display: flex
+  flex-direction: column
 
 .blur
   transition: all 0.3s ease-in-out
   filter: blur(0)
-  padding-top: 50px
 
 .blur_active
   filter: blur(10px)
 
 .bell
+  position: relative
   width: 100%
-  height: 100px
+  height: $bellHeight
   display: inline-block
   vertical-align: top
   transition: all 1s ease
@@ -41,20 +37,24 @@ body .blur
   overflow: visible
   background-color: #fff
   cursor: pointer
-  border-bottom: 1px solid black
+  padding: $bellSpacingTopBottom $bellSpacingLeftRight
+  display: flex
+  flex-direction: row
+  align-items: center
+  justify-content: space-between
+  border-bottom: 1px solid rgba(0, 0, 0, .25)
+
+  &:last-of-type
+    border-bottom: 0
+
   .logo
-    vertical-align: middle
-    position: absolute
-    top: 50%
-    transform: translateY(-50%)
     img
-      max-height: 80px
+      height: auto
+      width: auto
+      max-height: calc(#{$bellHeight} - #{$bellSpacingTopBottom} - #{$bellSpacingTopBottom})
       max-width: 300px
-      margin: 10px
-  .name
-    position: absolute
-    bottom: 10px
-    right: 20px
+
+  .bell-icon
     font-size: 30px
 
 .modal-dialog
