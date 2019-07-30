@@ -39,4 +39,20 @@ RailsAdmin.config do |config|
     # history_index
     # history_show
   end
+
+  config.model User do
+    configure :set_password
+    list do
+      field :id
+      field :email
+      field :admin
+      field :confirmed
+      field :approved
+      field :bells
+      field :last_sign_in_at do
+        strftime_format "%d.%m.%Y %H:%M:%S"
+      end
+      field :sign_in_count
+    end
+  end
 end
