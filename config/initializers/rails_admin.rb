@@ -46,8 +46,7 @@ RailsAdmin.config do |config|
       field :id
       field :email
       field :admin
-      field :confirmed
-      field :approved
+      field :confirmed_at
       field :bells
       field :last_sign_in_at do
         strftime_format "%d.%m.%Y %H:%M:%S"
