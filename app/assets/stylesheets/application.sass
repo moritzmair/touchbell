@@ -1,7 +1,12 @@
 
 @import "bootstrap"
 @import "font-awesome"
+@import "fonts"
 @import "bells"
+
+html
+  -webkit-tap-highlight-color: rgba(#BD0926, 0.1)
+  -webkit-text-size-adjust: 100%
 
 html, body
   width: 100%
@@ -9,6 +14,10 @@ html, body
   padding: 0
   margin: 0
   overflow-x: hidden
+
+body
+  font-family: Roboto, sans-serif
+  text-rendering: optimizeLegibility
 
 .content
   min-height: 60vh
