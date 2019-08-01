@@ -15,6 +15,28 @@ body .blur
   border-bottom: 5px solid #BD0926
   margin-bottom: 10px
 
+.alphabetical-filter
+  display: flex
+  flex-direction: row
+  justify-content: space-between
+  align-items: center
+  padding: 0 10px
+  margin-bottom: 10px
+
+  &-item
+    font-size: 1.8rem
+    color: #222
+    transition: text-shadow 0.2s linear
+    cursor: pointer
+
+    &.selected
+      text-shadow: 1px 0 0 currentColor
+      color: #BD0926
+
+    &.inactive
+      font-size: 0.8rem
+      color: #ccc
+
 .bells
   display: flex
   flex-direction: column
@@ -32,7 +54,7 @@ body .blur
   height: $bellHeight
   display: inline-block
   vertical-align: top
-  transition: all 1s ease
+  transition: all 0.2s ease
   position: relative
   overflow: visible
   background-color: #fff
@@ -42,10 +64,15 @@ body .blur
   flex-direction: row
   align-items: center
   justify-content: space-between
-  border-bottom: 1px solid rgba(0, 0, 0, .25)
+  border-top: 1px solid rgba(0, 0, 0, .25)
+  opacity: 1
+  height: auto
 
-  &:last-of-type
-    border-bottom: 0
+  &.hide
+    opacity: 0
+    height: 0
+    overflow: hidden
+    padding: 0
 
   .logo
     img
