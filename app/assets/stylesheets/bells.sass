@@ -18,23 +18,27 @@ body .blur
 .alphabetical-filter
   display: flex
   flex-direction: row
+  flex-wrap: wrap
   justify-content: space-between
   align-items: center
   padding: 0 10px
   margin-bottom: 10px
 
   &-item
-    font-size: 1.8rem
+    font-size: 2rem
     color: #222
     transition: text-shadow 0.2s linear
     cursor: pointer
+    width: 5%
+    margin: auto auto
+    text-align: center
 
     &.selected
       text-shadow: 1px 0 0 currentColor
       color: #BD0926
 
     &.inactive
-      font-size: 0.8rem
+      font-size: 1rem
       color: #ccc
 
 .bells
