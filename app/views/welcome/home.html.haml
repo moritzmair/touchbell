@@ -6,25 +6,31 @@
   .bells
     - @bells.each do |bell|
       .bell{"data-name" => bell.name, "data-toggle" => "modal", "data-target" => "#bell"+bell.id.to_s, style: 'background-color: '+bell.background.to_s}
-        .logo
-          = image_tag(bell.logo)
-        %span.bell-icon
-          %i.fa.fa-bell-o
+        - if not bell.logo.empty?
+          .logo
+            = image_tag(bell.logo)
+        - else
+          .name
+            #{bell.name}
+        - if not bell.trigger.empty?
+          %span.bell-icon
+            %i.fa.fa-bell-o
 
 / Bootstrap Modal
 - @bells.each do |bell|
-  .modal.fade{"aria-hidden" => "true", "aria-labelledby" => "exampleModalLabel", role: "dialog", tabindex: "-1", id: "bell"+bell.id.to_s}
-    .modal-dialog{:role => "document"}
-      .modal-content
-        .modal-header
-          %h5#exampleModalLabel.modal-title Bei #{bell.name} klingeln
-          %button.close{"aria-label" => "Close", "data-dismiss" => "modal", :type => "button"}
-            %span{"aria-hidden" => "true"} ×
-        .modal-body
-          Falls jemand im Büro ist werden Sie hier an der Eingangstür abgeholt.
-        .modal-footer
-          %button.btn.btn-secondary{"data-dismiss" => "modal", :type => "button"} Abbrechen
-          %button.btn.btn-danger{:type => "button", onclick: "ringring("+bell.id.to_s+")"} Klingeln
+  - if not bell.trigger.empty?
+    .modal.fade{"aria-hidden" => "true", "aria-labelledby" => "exampleModalLabel", role: "dialog", tabindex: "-1", id: "bell"+bell.id.to_s}
+      .modal-dialog{:role => "document"}
+        .modal-content
+          .modal-header
+            %h5#exampleModalLabel.modal-title Bei #{bell.name} klingeln
+            %button.close{"aria-label" => "Close", "data-dismiss" => "modal", :type => "button"}
+              %span{"aria-hidden" => "true"} ×
+          .modal-body
+            Falls jemand im Büro ist werden Sie hier an der Eingangstür abgeholt.
+          .modal-footer
+            %button.btn.btn-secondary{"data-dismiss" => "modal", :type => "button"} Abbrechen
+            %button.btn.btn-danger{:type => "button", onclick: "ringring("+bell.id.to_s+")"} Klingeln
 
 .modal.fade{"aria-hidden" => "true", "aria-labelledby" => "exampleModalLabel", role: "dialog", tabindex: "-1", id: "request_send"}
   .modal-dialog{:role => "document"}
