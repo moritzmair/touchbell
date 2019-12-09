@@ -49,7 +49,7 @@ RailsAdmin.config do |config|
       field :confirmed_at
       field :bells
       field :last_sign_in_at do
-        strftime_format "%d.%m.%Y %H:%M:%S"
+        strftime_format '%d.%m.%Y %H:%M:%S'
       end
       field :sign_in_count
     end

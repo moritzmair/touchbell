@@ -9,8 +9,9 @@ end
 
 ruby '2.6.1'
 
-gem "bootstrap", ">= 4.1.2"
+gem 'bootstrap', '>= 4.1.2'
 gem 'devise'
+gem 'font-awesome-rails'
 gem 'jquery-rails'
 gem 'mysql2'
 gem 'pg'
@@ -21,7 +22,6 @@ gem 'sass-rails', '~> 5.0'
 gem 'turbolinks', '~> 5'
 gem 'uglifier', '>= 1.3.0'
 gem 'uploadcare-rails', '~> 1.1'
-gem "font-awesome-rails"
 
 group :development, :test do
   gem 'capybara', '~> 2.13'
