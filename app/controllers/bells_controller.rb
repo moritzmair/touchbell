@@ -59,14 +59,63 @@ class BellsController < ApplicationController
     redirect_to bells_url, notice: 'Bell was successfully destroyed.'
   end
 
-  def ringring
+  # GET request
+  def ringring_get
     require 'net/http'
     uri = URI(@bell.trigger)
+    
     response = Net::HTTP.get(uri)
 
     # redirect_to bells_url, notice: 'Klingel wurde ausgelöst: ' + response
     render json: response.to_json
   end
+
+  #POST request
+  def ringring_post
+    require 'net/http'
+    require 'uri'
+    require 'json'
+
+   # uri = URI.parse("http://localhost:3000/users")
+    uri = URI(@bell.trigger)
+
+    header = {'Content-Type': 'text/json'}
+    user = {
+      #post the content(?)
+    }
+
+    # Create the HTTP objects
+    http = Net::HTTP.new(uri.host, uri.port)
+    request = Net::HTTP::Post.new(uri.request_uri, header)
+    request.body = user.to_json
+
+    # Send the request
+    response = http.request(request)
+  end 
+
+# https://coderwall.com/p/c-mu-a/http-posts-in-ruby
+
+# require 'net/http'
+# require 'uri'
+# require 'json'
+
+# uri = URI.parse("http://localhost:3000/users")
+
+# header = {'Content-Type': 'text/json'}
+# user = {user: {
+#                    name: 'Bob',
+#                    email: 'bob@example.com'
+#                       }
+#             }
+
+# # Create the HTTP objects
+# http = Net::HTTP.new(uri.host, uri.port)
+# request = Net::HTTP::Post.new(uri.request_uri, header)
+# request.body = user.to_json
+
+# # Send the request
+# response = http.request(request)
+
 
   private
 

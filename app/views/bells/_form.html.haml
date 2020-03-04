@@ -13,6 +13,18 @@
   .field
     = form.label 'Trigger URL'
     = form.text_field :trigger, id: :bell_trigger
+
+  .field
+    = form.radio_button_tag 'GET','false', { class: 'btn btn-primary' }
+    = form.radio_button_tag 'POST','false', { class: 'btn btn-primary' }
+
+  # radio button with options get and post request
+  # a field with json payload
+  .field
+    = form.label 'JSON Payload'
+    
+    = form.text_field :payload, id: :bell_payload
+
   .field
     = form.label :logo
     = uploadcare_uploader_field :bell, :logo
