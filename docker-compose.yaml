@@ -14,8 +14,8 @@ services:
     ports:
       # <Port exposed> : < MySQL Port running inside container>
       - "127.0.0.1:3306:3306"
-    volumes:  
+    volumes:
       - my-db:/var/lib/mysql
 # Names our volume
 volumes:
-  my-db:
+    my-db:
