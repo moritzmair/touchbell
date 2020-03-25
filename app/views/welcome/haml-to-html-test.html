@@ -22,37 +22,45 @@
   <!-- Bootstrap Modal -->
   - @bells.each do |bell|
   - if not bell.trigger.empty?
+    <!-- .modal.fade{"aria-hidden" => "true", "aria-labelledby" => "exampleModalLabel", role: "dialog", tabindex: "-1", id: "bell"+bell.id.to_s} -->
         <div class='modal fade'>
             <div class='modal-dialog' role='document'>
                 <div class='modal-content'>
                     <div class='modal-header'>
+                        <!--  %h5#exampleModalLabel.modal-title Bei #{bell.name} klingeln -->
                         <h5 class='modal-title' id='exampleModalLabel'>Es wird geklingelt</h5>
                         <button aria-label='Close' class='close' data-dismiss='modal' type='button'>
-                        <span aria-hidden='true'>×</span>
+                            <span aria-hidden='true'>×</span>
                         </button>
                     </div>
+                    <!-- .modal-body -->
                     <div class='modal-body' id='ring_info'>
                         Falls jemand im Büro ist werden Sie hier an der Eingangstür abgeholt.
                     </div>
+                    <div class='modal-footer'>
+                        <button class='btn btn-secondary' data-dismiss='modal' type='button'>Abbrechen</button>
+                        <button class='btn btn-danger'>Klingeln</button>
+                      </div>
+                      
                 </div>
             </div>
         </div>
   
-
- <!-- Bootstrap Modal -->
-<div class='modal fade'>
-    <div class='modal-dialog' role='document'>
-      <div class='modal-content'>
-        <div class='modal-header'>
-          <h5 class='modal-title' id='exampleModalLabel'>Es wird geklingelt</h5>
-          <button aria-label='Close' class='close' data-dismiss='modal' type='button'>
-            <span aria-hidden='true'>×</span>
-          </button>
+<!-- .modal.fade{"aria-hidden" => "true", "aria-labelledby" => "exampleModalLabel", role: "dialog", tabindex: "-1", id: "request_send"} -->
+    <div class='modal fade'>
+        <div class='modal-dialog' role='document'>
+            <div class='modal-content'>
+                <div class='modal-header'>
+                    <h5 class='modal-title' id='exampleModalLabel'>Es wird geklingelt</h5>
+                    <button aria-label='Close' class='close' data-dismiss='modal' type='button'>
+                        <span aria-hidden='true'>×</span>
+                    </button>
+                </div>
+                <div class='modal-body' id='ring_info'>
+                    ...
+                </div>
+            </div>
         </div>
-        <div class='modal-body' id='ring_info'>
-          ...
-        </div>
-      </div>
     </div>
-  </div>
+          
          
