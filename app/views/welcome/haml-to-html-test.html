@@ -6,7 +6,9 @@
     <div class='alphabetical-filter'></div>
     <div class='bells'>
     - @bells.each do |bell|
-        .bell{"data-name" => bell.name, "data-toggle" => "modal", "data-target" => "#bell"+bell.id.to_s, style: 'background-color: '+bell.background.to_s}
+        .bell{"data-name" => bell.name, "data-toggle" => "modal", 
+        "data-target" => "#bell"+bell.id.to_s, 
+        style: 'background-color: '+bell.background.to_s}
           - if not bell.logo.empty?
             .logo
               = image_tag(bell.logo)
@@ -20,9 +22,12 @@
   </div>
 
   <!-- Bootstrap Modal -->
+
   - @bells.each do |bell|
   - if not bell.trigger.empty?
-    <!-- .modal.fade{"aria-hidden" => "true", "aria-labelledby" => "exampleModalLabel", role: "dialog", tabindex: "-1", id: "bell"+bell.id.to_s} -->
+    <!-- .modal.fade{"aria-hidden" => "true", 
+        "aria-labelledby" => "exampleModalLabel", 
+        role: "dialog", tabindex: "-1", id: "bell"+bell.id.to_s} -->
         <div class='modal fade'>
             <div class='modal-dialog' role='document'>
                 <div class='modal-content'>
@@ -46,7 +51,9 @@
             </div>
         </div>
   
-<!-- .modal.fade{"aria-hidden" => "true", "aria-labelledby" => "exampleModalLabel", role: "dialog", tabindex: "-1", id: "request_send"} -->
+<!-- .modal.fade{"aria-hidden" => "true", 
+    "aria-labelledby" => "exampleModalLabel", 
+    role: "dialog", tabindex: "-1", id: "request_send"} -->
     <div class='modal fade'>
         <div class='modal-dialog' role='document'>
             <div class='modal-content'>
