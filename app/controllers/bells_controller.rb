@@ -81,7 +81,7 @@ class BellsController < ApplicationController
 
     header = {'Content-Type': 'text/json'}
     user = {
-      render json: 
+      render json: { header:'DING DONG',message: 'IHE member is ringing', time: 'to insert current time' }
     }
 
     # Create the HTTP objects
