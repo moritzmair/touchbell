@@ -95,28 +95,30 @@ class BellsController < ApplicationController
     response = http.request(request)
   end 
 
-# https://coderwall.com/p/c-mu-a/http-posts-in-ruby
-
-# require 'net/http'
-# require 'uri'
-# require 'json'
-
-# uri = URI.parse("http://localhost:3000/users")
-
-# header = {'Content-Type': 'text/json'}
-# user = {user: {
-#                    name: 'Bob',
-#                    email: 'bob@example.com'
-#                       }
-#             }
-
-# # Create the HTTP objects
-# http = Net::HTTP.new(uri.host, uri.port)
-# request = Net::HTTP::Post.new(uri.request_uri, header)
-# request.body = user.to_json
-
-# # Send the request
-# response = http.request(request)
+  #  -- post req example ---
+  # require 'uri'
+  # require 'json'
+  # require 'net/http'
+  
+  # jsonbody = '{
+  #              "id":50071,"name":"qatest123456","pricings":[
+  #               {"id":"dsb","name":"DSB","entity_type":"Other","price":6},
+  #               {"id":"tokens","name":"Tokens","entity_type":"All","price":500}
+  #               ]
+  #             }'
+  
+  # # Prepare request
+  # url = server + "/v1/entities"
+  # uri = URI.parse(url)  
+  # http = Net::HTTP.new(uri.host, uri.port)
+  # http.set_debug_output( $stdout )
+  
+  # request = Net::HTTP::Put.new(uri )
+  # request.body = jsonbody
+  # request.set_content_type("application/json")
+  
+  # # Send request
+  # response = http.request(request)
 
 
   private
