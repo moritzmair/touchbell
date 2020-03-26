@@ -15,12 +15,13 @@
     = form.text_field :trigger, id: :bell_trigger
 
 
-  .field |ihe_radio|
-    = ihe_radio.radio_button_tag('GETbtn', "GET", false , class: 'btn btn-primary')
+  .field
+    = radio_button_tag('GETbtn', "GET", false , class: 'btn btn-primary')
     = form.label 'GET'
-    = ihe_radio.radio_button_tag('POSTbtn',"POST", false ,class: 'btn btn-primary')
+    = radio_button_tag('POSTbtn',"POST", false ,class: 'btn btn-primary')
     = form.label 'POST'
     -# add ID for the field
+    -# switch here which type of req to use
 
   -# radio button with options get and post request
   -# a field with json payload

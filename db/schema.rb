@@ -49,5 +49,10 @@ ActiveRecord::Schema.define(version: 20_190_730_051_227) do
     t.index ['reset_password_token'], name: 'index_users_on_reset_password_token', unique: true
   end
 
+  create_table 'ihebell', force: :cascade, options: 'ENGINE=InnoDB DEFAULT CHARSET=utf8' do |t|
+    t.string 'header', default: 'ringring'
+    t.string 'message', default: 'IHE member ringed the bell'
+    t.datetime 'current_time'
+
   add_foreign_key 'bells', 'users'
 end
