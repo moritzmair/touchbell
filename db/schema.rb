@@ -50,8 +50,8 @@ ActiveRecord::Schema.define(version: 20_190_730_051_227) do
   end
 
   create_table 'ihebell', force: :cascade, options: 'ENGINE=InnoDB DEFAULT CHARSET=utf8' do |t|
-    t.string 'header', default: 'ringring'
-    t.string 'message', default: 'IHE member ringed the bell'
+    t.string 'header', default: 'DING DONG'
+    t.string 'message', default: 'IHE member is ringing the bell'
     t.datetime 'current_time'
 
   add_foreign_key 'bells', 'users'

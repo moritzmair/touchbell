@@ -81,7 +81,7 @@ class BellsController < ApplicationController
 
     header = {'Content-Type': 'text/json'}
     user = {
-      #post the content(?)
+      render json: 
     }
 
     # Create the HTTP objects
