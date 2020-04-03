@@ -15,26 +15,31 @@
     = form.text_field :trigger, id: :bell_trigger
 
 
-  .field#iheRadio 
-    = radio_button_tag('GETbtn', "GET", false , class: 'btn btn-primary')
-    = form.label 'GET'
-    = radio_button_tag('POSTbtn',"POST", false ,class: 'btn btn-primary')
-    = form.label 'POST'
-    -# add ID for the field
-    -# switch here which type of req to use
 
+    -# add ID for the field
+  -# switch here which type of req to use
+
+  
+  .form-group
+    %label
+      = form.radio_button :request_type, 'GET'
+      Make a GET bell
+    %label
+      = form.radio_button :request_type, 'POST'
+      Make a POST bell
   -# radio button with options get and post request
   -# a field with json payload
-  -# .field
-  -#   = form.label 'JSON Payload'
-  -#   JSON Payload
-  -#   = form.text_field :payload, id: :bell_payload
+  .field
+    = form.label 'JSON Payload'
+    = form.text_field :request_body, id: :bell_payload
 
   .field
     = form.label :logo
     = uploadcare_uploader_field :bell, :logo
   .actions
     = form.submit class: 'btn btn-primary'
+
+
   %br
 %p
   The trigger is a url that gets opened whenever someone rings the bell. This can be services like:
