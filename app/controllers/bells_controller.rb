@@ -30,6 +30,40 @@ class BellsController < ApplicationController
       redirect_to(bells_url, alert: 'You can only create one bell') && return
     end
 
+# require 'net/http'
+# require 'uri'
+# require 'json'
+
+# uri = URI.parse("https://chat.inheaden.io/hooks/afyhamzrhf8jtcschitodxzzky")
+
+# header = {'Content-Type': 'application/json'}
+# user = {
+#    text:'DING DONG, Please open the door!'
+#   }
+
+# # Create the HTTP objects
+# http = Net::HTTP.new(uri.host, uri.port)
+# request = Net::HTTP::Post.new(uri.request_uri, header)
+# request.body = user.to_json
+
+# puts user.to_json
+
+# # Send the request
+# res = Net::HTTP.start(uri.hostname, uri.port, :use_ssl => uri.scheme == 'https') do |http|
+#     http.request(request)
+# end
+
+# case res
+# when Net::HTTPSuccess, Net::HTTPRedirection
+#   puts OK
+# else
+#   res.value
+# end
+
+
+# # curl -i -X POST -H 'Content-Type: application/json' -d '{"text": "Hello, this some text\nThis is more bot text. :thumbsup:"}' https://chat.inheaden.io/hooks/afyhamzrhf8jtcschitodxzzky
+
+
     @bell = Bell.new(bell_params)
     @bell.user = current_user
 
@@ -59,67 +93,47 @@ class BellsController < ApplicationController
     redirect_to bells_url, notice: 'Bell was successfully destroyed.'
   end
 
-  # GET request
-  def ringring_get
-    require 'net/http'
-    uri = URI(@bell.trigger)
-    
-    response = Net::HTTP.get(uri)
+   def ringring_post
 
-    # redirect_to bells_url, notice: 'Klingel wurde ausgelöst: ' + response
-    render json: response.to_json
-  end
-
-  #POST request
-  def ringring_post
     require 'net/http'
     require 'uri'
     require 'json'
 
-   # uri = URI.parse("http://localhost:3000/users")
-    uri = URI(@bell.trigger)
+    uri = URI.parse("https://chat.inheaden.io/hooks/se4xr39aa7d1pbsfq6izbjao9y")
 
-    header = {'Content-Type': 'text/json'}
+    header = {'Content-Type': 'application/json'}
     user = {
-      user: {
-          title:'DING DONG', message: 'IHE member is ringing'
+      text:'IHE member is requesting to open the door',
       }
-    }
 
     # Create the HTTP objects
     http = Net::HTTP.new(uri.host, uri.port)
     request = Net::HTTP::Post.new(uri.request_uri, header)
     request.body = user.to_json
 
+    puts user.to_json
+
     # Send the request
-    response = http.request(request)
+    res = Net::HTTP.start(uri.hostname, uri.port, :use_ssl => uri.scheme == 'https') do |http|
+        http.request(request)
+    end
+
+    case res
+    when Net::HTTPSuccess, Net::HTTPRedirection
+      puts OK
+    else
+      res.value
+    end
   end 
 
-  #  -- post req example ---
-  # require 'uri'
-  # require 'json'
-  # require 'net/http'
-  
-  # jsonbody = '{
-  #              "id":50071,"name":"qatest123456","pricings":[
-  #               {"id":"dsb","name":"DSB","entity_type":"Other","price":6},
-  #               {"id":"tokens","name":"Tokens","entity_type":"All","price":500}
-  #               ]
-  #             }'
-  
-  # # Prepare request
-  # url = server + "/v1/entities"
-  # uri = URI.parse(url)  
-  # http = Net::HTTP.new(uri.host, uri.port)
-  # http.set_debug_output( $stdout )
-  
-  # request = Net::HTTP::Put.new(uri )
-  # request.body = jsonbody
-  # request.set_content_type("application/json")
-  
-  # # Send request
-  # response = http.request(request)
+  def ringring
+    require 'net/http'
+    uri = URI(@bell.trigger)
+    response = Net::HTTP.get(uri)
 
+    # redirect_to bells_url, notice: 'Klingel wurde ausgelöst: ' + response
+    render json: response.to_json
+  end
 
   private
 
