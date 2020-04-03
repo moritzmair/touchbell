@@ -30,40 +30,6 @@ class BellsController < ApplicationController
       redirect_to(bells_url, alert: 'You can only create one bell') && return
     end
 
-# require 'net/http'
-# require 'uri'
-# require 'json'
-
-# uri = URI.parse("https://chat.inheaden.io/hooks/afyhamzrhf8jtcschitodxzzky")
-
-# header = {'Content-Type': 'application/json'}
-# user = {
-#    text:'DING DONG, Please open the door!'
-#   }
-
-# # Create the HTTP objects
-# http = Net::HTTP.new(uri.host, uri.port)
-# request = Net::HTTP::Post.new(uri.request_uri, header)
-# request.body = user.to_json
-
-# puts user.to_json
-
-# # Send the request
-# res = Net::HTTP.start(uri.hostname, uri.port, :use_ssl => uri.scheme == 'https') do |http|
-#     http.request(request)
-# end
-
-# case res
-# when Net::HTTPSuccess, Net::HTTPRedirection
-#   puts OK
-# else
-#   res.value
-# end
-
-
-# # curl -i -X POST -H 'Content-Type: application/json' -d '{"text": "Hello, this some text\nThis is more bot text. :thumbsup:"}' https://chat.inheaden.io/hooks/afyhamzrhf8jtcschitodxzzky
-
-
     @bell = Bell.new(bell_params)
     @bell.user = current_user
 
@@ -93,46 +59,43 @@ class BellsController < ApplicationController
     redirect_to bells_url, notice: 'Bell was successfully destroyed.'
   end
 
-   def ringring_post
-
-    require 'net/http'
-    require 'uri'
-    require 'json'
-
-    uri = URI.parse("https://chat.inheaden.io/hooks/se4xr39aa7d1pbsfq6izbjao9y")
-
-    header = {'Content-Type': 'application/json'}
-    user = {
-      text:'IHE member is requesting to open the door',
-      }
-
-    # Create the HTTP objects
-    http = Net::HTTP.new(uri.host, uri.port)
-    request = Net::HTTP::Post.new(uri.request_uri, header)
-    request.body = user.to_json
-
-    puts user.to_json
-
-    # Send the request
-    res = Net::HTTP.start(uri.hostname, uri.port, :use_ssl => uri.scheme == 'https') do |http|
-        http.request(request)
-    end
-
-    case res
-    when Net::HTTPSuccess, Net::HTTPRedirection
-      puts OK
-    else
-      res.value
-    end
-  end 
-
   def ringring
-    require 'net/http'
-    uri = URI(@bell.trigger)
-    response = Net::HTTP.get(uri)
+    if @bell.request_type == "POST"
+      require 'net/http'
+      require 'uri'
+      require 'json'
 
-    # redirect_to bells_url, notice: 'Klingel wurde ausgelöst: ' + response
-    render json: response.to_json
+      uri = URI.parse(@bell.trigger)
+
+      header = {'Content-Type': 'application/json'}
+
+      body = JSON.parse(@bell.request_body)
+
+      # Create the HTTP objects
+      http = Net::HTTP.new(uri.host, uri.port)
+      request = Net::HTTP::Post.new(uri.request_uri, header)
+      request.body = body.to_json
+
+      # puts user.to_json
+
+      # Send the request
+      res = Net::HTTP.start(uri.hostname, uri.port, :use_ssl => uri.scheme == 'https') do |http|
+          http.request(request)
+      end
+
+      render json: res.to_json
+
+      # case res
+      # when Net::HTTPSuccess, Net::HTTPRedirection
+      #   puts OK
+      # else
+      #   res.value
+      # end
+    else
+      uri = URI(@bell.trigger)
+      response = Net::HTTP.get(uri)
+      render json: response.to_json
+    end    
   end
 
   private
@@ -144,6 +107,6 @@ class BellsController < ApplicationController
 
   # Only allow a trusted parameter "white list" through.
   def bell_params
-    params.require(:bell).permit(:name, :trigger, :admin_hash, :logo, :background, :enabled)
+    params.require(:bell).permit(:name, :trigger, :admin_hash, :logo, :background, :enabled, :request_body, :request_type)
   end
 end
