@@ -20,7 +20,7 @@ ActiveRecord::Schema.define(version: 20200403152132) do
     t.datetime "created_at", null: false
     t.datetime "updated_at", null: false
     t.bigint "user_id"
-    t.boolean "enabled", default: false
+    t.boolean "enabled", default: true
     t.string "background"
     t.string "request_type"
     t.string "request_body"
