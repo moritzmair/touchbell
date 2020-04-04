@@ -1,13 +1,13 @@
 # Read about fixtures at http://api.rubyonrails.org/classes/ActiveRecord/FixtureSet.html
 
 one:
-  name: MyString
-  trigger: MyString
+  name: 'MyString'
+  trigger: 'https://chat.inheaden.io/hooks/se4xr39aa7d1pbsfq6izbjao9y'
   admin_hash: MyString
-  logo: MyString
+  logo: ''
 
-two:
-  name: MyString
-  trigger: MyString
-  admin_hash: MyString
-  logo: MyString
+# two:
+#   name: MyString
+#   trigger: MyString
+#   admin_hash: MyString
+#   logo: MyString
