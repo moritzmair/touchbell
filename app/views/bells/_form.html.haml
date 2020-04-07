@@ -21,12 +21,13 @@
 
   
   .form-group
+  Request method\n
     %label
-      = form.radio_button :request_type, 'GET'
-      Make a GET bell
+      = form.radio_button :request_type, 'GET', default: true
+      GET
     %label
       = form.radio_button :request_type, 'POST'
-      Make a POST bell
+      POST
   -# radio button with options get and post request
   -# a field with json payload
   .field

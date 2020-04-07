@@ -32,7 +32,7 @@
             Falls jemand im Büro ist werden Sie hier an der Eingangstür abgeholt.
           .modal-footer
             %button.btn.btn-secondary{"data-dismiss" => "modal", :type => "button"} Abbrechen
-            %button.btn.btn-danger{:type => "button", onclick: "ringring("+bell.id.to_s+")"} Klingeln
+            %button.btn.btn-danger{:type => "button", onclick: "ringring_post("+bell.id.to_s+")"} Klingeln
 
 .modal.fade{"aria-hidden" => "true", "aria-labelledby" => "exampleModalLabel", role: "dialog", tabindex: "-1", id: "request_send"}
   .modal-dialog{:role => "document"}
