@@ -21,10 +21,13 @@
 
   
   .form-group
-  Request method\n
+  Request method
+  %br
     %label
       = form.radio_button :request_type, 'GET', default: true
-      GET
+      GET 
+      
+    %br
     %label
       = form.radio_button :request_type, 'POST'
       POST
@@ -32,7 +35,7 @@
   -# a field with json payload
   .field
     = form.label 'JSON Payload'
-    = form.text_field :request_body, id: :bell_payload
+    = form.text_area :request_body, id: :bell_payload
 
   .field
     = form.label :logo
