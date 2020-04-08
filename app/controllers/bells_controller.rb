@@ -65,12 +65,25 @@ class BellsController < ApplicationController
     require "json"
 
     uri = URI.parse(@bell.trigger)
+    # https://chat.inheaden.io/api/v4/posts
 
-    header = { 'Content-Type': "application/json",
-               'Authorization': "Token " + @bell.authorization_header }
+    header = { "Content-Type": "application/json", "Authorization": "Token " + @bell.authorization_header }
     #set auth_header in db, set trigger value should be /v4/posts
 
-    body = JSON.parse(@bell.request_body)
+    body = {
+      "channel_id" => "3aybp6hz5jfz3jjmyou39rtxth",
+      "message" => @bell.request_body,
+      "username" => "hub31_bell",
+    }
+    # body = JSON.parse('{"channel_id": "3aybp6hz5jfz3jjmyou39rtxth", "message": @bell. ,"username":"hub31_bell"}')
+
+    # uri = URI.parse(@bell.trigger)
+
+    # header = { 'Content-Type': "application/json",
+    #            'Authorization': "Token " + @bell.authorization_header }
+    #set auth_header in db, set trigger value should be /v4/posts
+
+    # body = JSON.parse(@bell.request_body)
 
     # Create the HTTP objects
     http = Net::HTTP.new(uri.host, uri.port)
