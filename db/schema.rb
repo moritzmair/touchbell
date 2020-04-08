@@ -10,8 +10,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 20200407222810) do
-
+ActiveRecord::Schema.define(version: 20200407181316) do
   create_table "bells", force: :cascade, options: "ENGINE=InnoDB DEFAULT CHARSET=utf8" do |t|
     t.string "name"
     t.string "trigger"
@@ -22,9 +21,9 @@ ActiveRecord::Schema.define(version: 20200407222810) do
     t.bigint "user_id"
     t.boolean "enabled", default: true
     t.string "background"
+    t.string "authorization_header"
     t.string "request_type", default: "GET"
     t.string "request_body"
-    t.string "authorization_header"
     t.index ["user_id"], name: "index_bells_on_user_id"
   end
 
