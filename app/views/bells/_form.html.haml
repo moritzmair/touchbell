@@ -35,11 +35,14 @@
   -# a field with json payload
 
   .field
-    = form.label 'BOT Token'
-    = form.text_area :authorization_header, id: :bell_header
+    = form.label 'Authorization Header'
+    %br
+    = form.text_field :authorization_header, id: :bell_header
 
   .field
     = form.label 'JSON Payload'
+    = form.label 'ex: "{"message": "Someone is at the door!"}",', style: "font-size: 12px; font-style:italic"
+    %br
     = form.text_area :request_body, id: :bell_payload
 
   .field
