@@ -13,12 +13,6 @@
   .field
     = form.label 'Trigger URL'
     = form.text_field :trigger, id: :bell_trigger
-
-
-
-    -# add ID for the field
-  -# switch here which type of req to use
-
   
   .form-group
   Request method
@@ -31,8 +25,6 @@
     %label
       = form.radio_button :request_type, 'POST'
       POST
-  -# radio button with options get and post request
-  -# a field with json payload
 
   .field
     = form.label 'Authorization Header'

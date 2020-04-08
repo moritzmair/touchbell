@@ -65,7 +65,6 @@ class BellsController < ApplicationController
     require "json"
 
     uri = URI.parse(@bell.trigger)
-    # https://chat.inheaden.io/api/v4/posts
 
     if (@bell.authorization_header != "NULL")
       header = { "Content-Type": "application/json", "Authorization": "#{@bell.authorization_header}" }
@@ -74,45 +73,16 @@ class BellsController < ApplicationController
     end
 
     body = JSON.parse(@bell.request_body)
-    # body = { "channel_id" => "3aybp6hz5jfz3jjmyou39rtxth", "message" => "newest test", "username" => "hub31_bell" }
-
-    # body = {
-    #   "channel_id" => "3aybp6hz5jfz3jjmyou39rtxth",
-    #   "message" => @bell.request_body,
-    #   "username" => "hub31_bell",
-    # }
-
-    puts body
-    # {"channel_id"=>"3aybp6hz5jfz3jjmyou39rtxth", "message"=>"new test", "username"=>"hub31_bell"}
-
-    # 6hsw4y5pk7ym8csttnbbz9ecnh
-    # "3aybp6hz5jfz3jjmyou39rtxth", "test message", "hub31_bell"
-    # https://chat.inheaden.io/api/v4/posts
-    # body = JSON.parse('{"channel_id": "3aybp6hz5jfz3jjmyou39rtxth", "message": @bell. ,"username":"hub31_bell"}')
-
     # Create the HTTP objects
     http = Net::HTTP.new(uri.host, uri.port)
     request = Net::HTTP::Post.new(uri.request_uri, header)
     request.body = body.to_json
-
-    #set auth_header in db, set trigger value should be /v4/posts
-    #generate migration, add coloumun, db migrate,
-    # curl -a -H 'authorization: Token 6hsw4y5pk7ym8csttnbbz9ecnh' -H 'Content-Type: application/json' -d '{"channel_id": "3aybp6hz5jfz3jjmyou39rtxth", "message": "TEXT","username":"hub31_bell"}' https://chat.inheaden.io/api/v4/posts
-    # set auth_header in db, set trigger value should be /v4/posts
 
     # Send the request
     res = Net::HTTP.start(uri.hostname, uri.port, :use_ssl => uri.scheme == "https") do |http|
       http.request(request)
 
       render json: res.to_json
-
-      # case res
-      # when Net::HTTPSuccess, Net::HTTPRedirection
-      #   puts OK
-      # else
-      #   res.value
-      # end
-
     end
   end
 
