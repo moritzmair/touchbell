@@ -33,6 +33,11 @@
       POST
   -# radio button with options get and post request
   -# a field with json payload
+
+  .field
+    = form.label 'Header Payload'
+    = form.text_area :authorization_header, id: :bell_header
+
   .field
     = form.label 'JSON Payload'
     = form.text_area :request_body, id: :bell_payload
