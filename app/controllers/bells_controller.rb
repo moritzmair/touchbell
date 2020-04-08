@@ -66,7 +66,9 @@ class BellsController < ApplicationController
 
     uri = URI.parse(@bell.trigger)
 
-    header = { 'Content-Type': "application/json" }
+    header = { 'Content-Type': "application/json",
+               'Authorization': "Token " + @bell.authorization_header }
+    #set auth_header in db, set trigger value should be /v4/posts
 
     body = JSON.parse(@bell.request_body)
 
@@ -77,6 +79,9 @@ class BellsController < ApplicationController
 
     # puts user.to_json
 
+    # curl -a -H 'authorization: Token 6hsw4y5pk7ym8csttnbbz9ecnh' -H 'Content-Type: application/json' -d '{"channel_id": "3aybp6hz5jfz3jjmyou39rtxth", "message": "TEXT","username":"hub31_bell"}' https://chat.inheaden.io/api/v4/posts
+
+    #generate migration, add coloumun, db migrate,
     # Send the request
     res = Net::HTTP.start(uri.hostname, uri.port, :use_ssl => uri.scheme == "https") do |http|
       http.request(request)
@@ -89,6 +94,7 @@ class BellsController < ApplicationController
       # else
       #   res.value
       # end
+
     end
   end
 
@@ -122,6 +128,6 @@ class BellsController < ApplicationController
 
   # Only allow a trusted parameter "white list" through.
   def bell_params
-    params.require(:bell).permit(:name, :trigger, :admin_hash, :logo, :background, :enabled, :request_body, :request_type)
+    params.require(:bell).permit(:name, :trigger, :admin_hash, :logo, :background, :enabled, :request_body, :request_type, :authorization_header)
   end
 end
