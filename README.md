@@ -10,7 +10,7 @@ A webapp that can be used as a notification system. Build to be used on a tablet
 * visit http://localhost:3000
 
 # How to use
-Register a User. A admin user needs to approve you before you can add a bell. The bell will appear on the start screen.
+Register a User. A admin user needs to approve a newly added bell. The bell will appear on the start screen.
 
 # Bell trigger
 The Touchbell only represents one side of a normal door bell. The place where someone can trigger the bell.
