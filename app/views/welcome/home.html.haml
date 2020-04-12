@@ -5,7 +5,9 @@
   .alphabetical-filter
   .bells
     - @bells.each do |bell|
-      .bell{"data-name" => bell.name, "data-toggle" => "modal", "data-target" => "#bell"+bell.id.to_s, style: 'background-color: '+bell.background.to_s}
+      .bell{"data-name" => bell.name, "data-toggle" => "modal", 
+      "data-target" => "#bell"+bell.id.to_s, 
+      style: 'background-color: '+bell.background.to_s}
         - if not bell.logo.empty?
           .logo
             = image_tag(bell.logo)

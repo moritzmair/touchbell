@@ -8,16 +8,41 @@
         - bell.errors.full_messages.each do |message|
           %li= message
   .field
-    = form.label 'Organisation Name'
+    = form.label 'Organisation Name', for: :bell_name
     = form.text_field :name, id: :bell_name
   .field
-    = form.label 'Trigger URL'
+    = form.label 'Trigger URL', for: :bell_trigger
     = form.text_field :trigger, id: :bell_trigger
+  
+  .form-group
+  Request method
+  %br
+    %label
+      = form.radio_button :request_type, 'GET', default: true
+      GET 
+      
+    %br
+    %label
+      = form.radio_button :request_type, 'POST'
+      POST
+
+  .field
+    = form.label 'Authorization Header', class: "mt-2", for: :bell_header
+    = form.text_field :authorization_header, id: :bell_header
+
+  .field
+    = form.label 'JSON Payload', class: "mt-2", for: :bell_payload
+    = form.label 'ex: "{"message": "Someone is at the door!"}",', style: "font-size: 12px; font-style:italic"
+    %br
+    = form.text_area :request_body, id: :bell_payload
+
   .field
     = form.label :logo
     = uploadcare_uploader_field :bell, :logo
   .actions
     = form.submit class: 'btn btn-primary'
+
+
   %br
 %p
   The trigger is a url that gets opened whenever someone rings the bell. This can be services like:
