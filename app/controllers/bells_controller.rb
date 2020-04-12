@@ -77,7 +77,6 @@ class BellsController < ApplicationController
 
     body = JSON.parse(@bell.request_body)
     # Create the HTTP objects
-    http = Net::HTTP.new(uri.host, uri.port)
     request = Net::HTTP::Post.new(uri.request_uri, header)
     request.body = body.to_json
 
