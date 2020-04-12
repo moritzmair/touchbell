@@ -10,12 +10,13 @@ class BellsController < ApplicationController
 
   def show
     unless current_user == @bell.user || current_user.admin?
-      redirect_to(bells_url, alert: "You can not view details for this bell") && return
+      redirect_to(bells_url, alert: 'You can not view details for this bell') && return
     end
+
     unless params[:enabled].nil?
       @bell.enabled = params[:enabled]
       @bell.save
-      redirect_to(bells_url, notice: "bell was enabled or disabled")
+      redirect_to(bells_url, notice: 'bell was enabled or disabled')
     end
   end
 
@@ -27,14 +28,14 @@ class BellsController < ApplicationController
 
   def create
     unless current_user.bells.count.zero? || current_user.admin?
-      redirect_to(bells_url, alert: "You can only create one bell") && return
+      redirect_to(bells_url, alert: 'You can only create one bell') && return
     end
 
     @bell = Bell.new(bell_params)
     @bell.user = current_user
 
     if @bell.save
-      redirect_to @bell, notice: "Bell was successfully created."
+      redirect_to @bell, notice: 'Bell was successfully created.'
     else
       render :new
     end
@@ -42,10 +43,11 @@ class BellsController < ApplicationController
 
   def update
     unless current_user == @bell.user || current_user.admin?
-      redirect_to(bells_url, alert: "You can not edit this bell") && return
+      redirect_to(bells_url, alert: 'You can not edit this bell') && return
     end
+
     if @bell.update(bell_params)
-      redirect_to @bell, notice: "Bell was successfully updated."
+      redirect_to @bell, notice: 'Bell was successfully updated.'
     else
       render :edit
     end
@@ -53,23 +55,24 @@ class BellsController < ApplicationController
 
   def destroy
     unless current_user == @bell.user || current_user.admin?
-      redirect_to(bells_url, alert: "You can not delete this bell") && return
+      redirect_to(bells_url, alert: 'You can not delete this bell') && return
     end
+
     @bell.destroy
-    redirect_to bells_url, notice: "Bell was successfully destroyed."
+    redirect_to bells_url, notice: 'Bell was successfully destroyed.'
   end
 
   def post_service
-    require "net/http"
-    require "uri"
-    require "json"
+    require 'net/http'
+    require 'uri'
+    require 'json'
 
     uri = URI.parse(@bell.trigger)
 
-    if (@bell.authorization_header != "NULL")
-      header = { "Content-Type": "application/json", "Authorization": "#{@bell.authorization_header}" }
+    if @bell.authorization_header != 'NULL'
+      header = { "Content-Type": 'application/json', "Authorization": @bell.authorization_header.to_s }
     else
-      header = { "Content-Type": "application/json" }
+      header = { "Content-Type": 'application/json' }
     end
 
     body = JSON.parse(@bell.request_body)
@@ -79,7 +82,7 @@ class BellsController < ApplicationController
     request.body = body.to_json
 
     # Send the request
-    res = Net::HTTP.start(uri.hostname, uri.port, :use_ssl => uri.scheme == "https") do |http|
+    res = Net::HTTP.start(uri.hostname, uri.port, use_ssl: uri.scheme == 'https') do |http|
       http.request(request)
 
       render json: res.to_json
@@ -94,9 +97,9 @@ class BellsController < ApplicationController
 
   def ringring
     case @bell.request_type
-    when "POST"
+    when 'POST'
       post_service
-    when "GET"
+    when 'GET'
       get_service
     else
       puts Unknown Request Type
