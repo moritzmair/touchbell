@@ -9,9 +9,7 @@ class BellsController < ApplicationController
   end
 
   def show
-    unless current_user == @bell.user || current_user.admin?
-      redirect_to(bells_url, alert: 'You can not view details for this bell') && return
-    end
+    redirect_to(bells_url, alert: 'You can not view details for this bell') && return unless current_user == @bell.user || current_user.admin?
 
     unless params[:enabled].nil?
       @bell.enabled = params[:enabled]
@@ -27,9 +25,7 @@ class BellsController < ApplicationController
   def edit; end
 
   def create
-    unless current_user.bells.count.zero? || current_user.admin?
-      redirect_to(bells_url, alert: 'You can only create one bell') && return
-    end
+    redirect_to(bells_url, alert: 'You can only create one bell') && return unless current_user.bells.count.zero? || current_user.admin?
 
     @bell = Bell.new(bell_params)
     @bell.user = current_user
@@ -42,9 +38,7 @@ class BellsController < ApplicationController
   end
 
   def update
-    unless current_user == @bell.user || current_user.admin?
-      redirect_to(bells_url, alert: 'You can not edit this bell') && return
-    end
+    redirect_to(bells_url, alert: 'You can not edit this bell') && return unless current_user == @bell.user || current_user.admin?
 
     if @bell.update(bell_params)
       redirect_to @bell, notice: 'Bell was successfully updated.'
@@ -54,9 +48,7 @@ class BellsController < ApplicationController
   end
 
   def destroy
-    unless current_user == @bell.user || current_user.admin?
-      redirect_to(bells_url, alert: 'You can not delete this bell') && return
-    end
+    redirect_to(bells_url, alert: 'You can not delete this bell') && return unless current_user == @bell.user || current_user.admin?
 
     @bell.destroy
     redirect_to bells_url, notice: 'Bell was successfully destroyed.'
@@ -69,11 +61,11 @@ class BellsController < ApplicationController
 
     uri = URI.parse(@bell.trigger)
 
-    if @bell.authorization_header != 'NULL'
-      header = { "Content-Type": 'application/json', "Authorization": @bell.authorization_header.to_s }
-    else
-      header = { "Content-Type": 'application/json' }
-    end
+    header = if @bell.authorization_header != 'NULL'
+               { "Content-Type": 'application/json', "Authorization": @bell.authorization_header.to_s }
+             else
+               { "Content-Type": 'application/json' }
+             end
 
     body = JSON.parse(@bell.request_body)
     # Create the HTTP objects
