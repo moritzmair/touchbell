@@ -7,7 +7,7 @@ git_source(:github) do |repo_name|
   "https://github.com/#{repo_name}.git"
 end
 
-ruby '3.0.0'
+ruby '2.6.1'
 
 gem 'bootstrap', '>= 4.1.2'
 gem 'devise'
@@ -15,14 +15,14 @@ gem 'font-awesome-rails'
 gem 'jquery-rails'
 gem 'mysql2'
 gem 'pg'
-gem 'puma', '~> 3.12'
+gem 'puma', '~> 5.0'
 gem 'rails', '~>  6.1.3'
 gem 'rails_admin'
-gem 'sass-rails'
-gem 'turbolinks'
+gem 'sass-rails', '>= 6'
+gem 'turbolinks', '~> 5'
 gem 'uglifier', '>= 1.3.0'
-gem 'uploadcare-rails'
-gem 'execjs'
+gem 'uploadcare-rails', git: 'https://github.com/moritzmair/uploadcare-rails.git'
+gem 'mini_racer'
 
 group :development, :test do
   gem 'capybara', '~> 2.13'

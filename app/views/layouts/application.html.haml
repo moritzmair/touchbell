@@ -9,8 +9,7 @@
     %meta{content: "yes", name: "mobile-web-app-capable"}/
     %title Touchbell
     = csrf_meta_tags
-    = stylesheet_link_tag    'application', media: 'all', 'data-turbolinks-track': 'reload'
-    = javascript_include_tag 'application', 'data-turbolinks-track': 'reload'
+    = render '/layouts/stylesheets_and_javascripts'
     = uploadcare_settings
   %body
     .container
