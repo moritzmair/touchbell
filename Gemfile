@@ -7,7 +7,7 @@ git_source(:github) do |repo_name|
   "https://github.com/#{repo_name}.git"
 end
 
-ruby '2.6.1'
+ruby '3.0.0'
 
 gem 'bootstrap', '>= 4.1.2'
 gem 'devise'
